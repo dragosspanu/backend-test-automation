@@ -1,0 +1,13 @@
+id,name,baseExperience,ability1,ability2,weight
+1,bulbasaur,64,chlorophyll,overgrow,69
+2,ivysaur,142,chlorophyll,overgrow,130
+3,venusaur,236,chlorophyll,overgrow,1000
+4,charmander,62,solar-power,blaze,85
+5,charmeleon,142,solar-power,blaze,190
+6,charizard,240,solar-power,blaze,905
+7,squirtle,63,rain-dish,torrent,90
+9,blastoise,239,rain-dish,torrent,855
+12,butterfree,178,tinted-lens,compound-eyes,320
+21,spearow,52,sniper,keen-eye,20
+25,pikachu,112,lightning-rod,static,60
+26,raichu,218,lightning-rod,static,300
