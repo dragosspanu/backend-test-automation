@@ -51,6 +51,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.10.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.vimalselvam</groupId>
+            <artifactId>test-graphql-java</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
