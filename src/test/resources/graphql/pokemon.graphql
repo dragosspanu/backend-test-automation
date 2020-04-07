@@ -1,5 +1,13 @@
 query pokemon($name:String!) {
     pokemon(name: $name) {
         name
+        weight{
+            minimum
+            maximum
+        }
+        height{
+            minimum
+            maximum
+        }
     }
 }
