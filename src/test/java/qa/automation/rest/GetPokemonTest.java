@@ -1,4 +1,4 @@
-package qa.automation;
+package qa.automation.rest;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,12 +9,12 @@ import org.slf4j.LoggerFactory;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class GetPokemonTest {
+class GetPokemonTest {
     private final Logger logger = LoggerFactory.getLogger(GetPokemonTest.class);
 
     @ParameterizedTest
     @CsvFileSource(resources = "/rest/pokemons.csv", numLinesToSkip = 1)
-    public void testPokemonJson(String id, String name, Integer baseExperience, String ability1, String ability2, Integer weight) {
+    void testPokemonJson(String id, String name, Integer baseExperience, String ability1, String ability2, Integer weight) {
         RestAssured.baseURI = "https://pokeapi.co";
         given().log().uri().
                 when().get("/api/v2/pokemon/" + id + "/").

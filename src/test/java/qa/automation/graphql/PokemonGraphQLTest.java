@@ -1,4 +1,4 @@
-package qa.automation;
+package qa.automation.graphql;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -14,15 +14,15 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class PokemonGraphQLTest {
-    private final Logger logger = LoggerFactory.getLogger(GetPokemonTest.class);
+class PokemonGraphQLTest {
+    private final Logger logger = LoggerFactory.getLogger(PokemonGraphQLTest.class);
 
     @ParameterizedTest
     @CsvFileSource(resources = "/graphql/pokemons.csv", numLinesToSkip = 1)
-    public void testGraphQL(String pokemonName, String minimumWeight, String maximumWeight, String minimumHeight, String maximumHeight) {
-        RestAssured.baseURI = "https://graphql-pokemon.now.sh";
+    void testGraphQL(String id, String pokemonName, String weight, String height) {
+        RestAssured.baseURI = "https://pokeapi-graphiql.herokuapp.com";
         Map<String, String> variables = new HashMap<>();
-        variables.put("name", pokemonName);
+        variables.put("number", id);
         String graphqlPayload = GraphqlUtil.prepareGraphqlPayload(variables, "src/test/resources/graphql/pokemon.graphql");
         given().log().body()
                 .contentType(ContentType.JSON)
@@ -31,10 +31,8 @@ public class PokemonGraphQLTest {
                 .then()
                 .statusCode(200)
                 .body("data.pokemon.name", equalTo(pokemonName))
-                .body("data.pokemon.weight.minimum", equalTo(minimumWeight))
-                .body("data.pokemon.weight.maximum", equalTo(maximumWeight))
-                .body("data.pokemon.height.minimum", equalTo(minimumHeight))
-                .body("data.pokemon.height.maximum", equalTo(maximumHeight));
+                .body("data.pokemon.weight", equalTo(weight))
+                .body("data.pokemon.height", equalTo(height));
         logger.info("GraphQL request successful for " + pokemonName);
     }
 }

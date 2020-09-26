@@ -1,13 +1,7 @@
-query pokemon($name:String!) {
-    pokemon(name: $name) {
+query pokemon($number:Int!) {
+    pokemon(number: $number) {
         name
-        weight{
-            minimum
-            maximum
-        }
-        height{
-            minimum
-            maximum
-        }
+        weight
+        height
     }
 }

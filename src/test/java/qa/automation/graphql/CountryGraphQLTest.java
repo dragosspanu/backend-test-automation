@@ -1,4 +1,4 @@
-package qa.automation;
+package qa.automation.graphql;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -14,12 +14,12 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class CountryGraphQLTest {
-    private final Logger logger = LoggerFactory.getLogger(GetPokemonTest.class);
+class CountryGraphQLTest {
+    private final Logger logger = LoggerFactory.getLogger(CountryGraphQLTest.class);
 
     @ParameterizedTest
     @CsvFileSource(resources = "/graphql/countries.csv", numLinesToSkip = 1)
-    public void testGraphQL(String code, String name, String capital, String continent) {
+    void testGraphQL(String code, String name, String capital, String continent) {
         RestAssured.baseURI = "https://countries.trevorblades.com";
         Map<String, String> variables = new HashMap<>();
         variables.put("code", code);
